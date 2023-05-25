@@ -61,6 +61,8 @@ export const Card = styled.div`
   width: 138px;
   height: 160px;
   padding: 20px 16px;
+  border-radius: 8px;
+  border: 1px solid ${pallette.colorGreyLight};
   background-color: ${pallette.colorWhite};
 `;
 
