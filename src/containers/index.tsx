@@ -20,7 +20,7 @@ const INITIAL_DATA: FormData = {
   name: "",
   email: "",
   phone: "",
-  plan: "",
+  plan: "arcade",
   addons: []
 };
 
