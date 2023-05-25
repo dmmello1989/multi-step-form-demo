@@ -55,6 +55,13 @@ export const Input = styled.input`
   }
 `;
 
+export const CardsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
