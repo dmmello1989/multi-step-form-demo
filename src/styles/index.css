@@ -6,6 +6,7 @@
   all: unset;
   display: revert;
   font-size: 16px;
+  font-family: Ubuntu;
 }
 /* Preferred box-sizing value */
 *,
@@ -37,6 +38,9 @@ textarea {
  display:revert; revert to element instead of attribute */
 :where([hidden]){
   display:none;
+}
+button {
+  cursor: pointer;
 }
 /* revert for bug in Chromium browsers
  - fix for the content editable attribute will work properly. */

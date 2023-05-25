@@ -2,7 +2,12 @@ import styled from "styled-components";
 import * as pallette from "../../styles/pallette";
 import BgDesktop from "../../assets/bg-sidebar-desktop.svg";
 
+type Props = {
+  isActive: boolean
+}
+
 export const Sidebar = styled.div`
+  flex-shrink: 0;
   width: 100%;
   max-width: 274px;
   height: 100%;
@@ -27,7 +32,7 @@ export const Item = styled.li`
   }
 `;
 
-export const ItemNumber = styled.div`
+export const ItemNumber = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,6 +64,7 @@ export const ItemStepLabel = styled.span`
 
 export const ItemStepTitle = styled.span`
   font: 700 0.875rem Ubuntu;
+  letter-spacing: 1px;
   color: ${pallette.colorWhite};
 `;
 

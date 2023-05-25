@@ -1,12 +1,7 @@
-import { FormEvent, useState } from "react";
-import { useMultistepForm } from "../../hooks/useMultistepForm";
-import { AddonsStep } from "./addonsStep";
-import { PersonalInfoStep } from "./personalInfoStep";
-import { SelectPlanStep } from "./selectPlanStep";
-import { SummaryStep } from "./summaryStep";
-import * as S from "./styles";
+import { FormEvent, ReactElement } from "react";
+import * as S from "./styles.ts";
 
-type FormData = {
+type UserData = {
   name: string,
   email: string,
   phone: string,
@@ -14,56 +9,36 @@ type FormData = {
   addons: string[]
 };
 
-const INITIAL_DATA: FormData = {
-  name: "",
-  email: "",
-  phone: "",
-  plan: "",
-  addons: []
-};
+type FormProps = {
+  step: ReactElement,
+  steps: ReactElement[],
+  isLastStep: boolean,
+  isFirstStep: boolean,
+  currentStep: number,
+  goBack: (e: Event) => void,
+  onSubmit: (e: FormEvent) => void,
+}
 
-export const FormSection = () => {
-  const [data, setData] = useState(INITIAL_DATA);
-
-  const updateFields = (fields: Partial<FormData>) => {
-    setData(prevState => {
-      return { ...prevState, ...fields }
-    });
-  };
-
-  const { step, steps, back, next, currentStep, isFirstStep, isLastStep } = useMultistepForm([
-    <PersonalInfoStep updateFields={updateFields} {...data} />, 
-    <SelectPlanStep updateFields={updateFields} {...data} />, 
-    <AddonsStep updateFields={updateFields} {...data} />, 
-    <SummaryStep data={data} />
-  ]);
-
-  console.log(data)
-
-  const goBack = (e: Event) => {
-    e.preventDefault();
-    e.stopPropagation();
-    back();
-  }
-  
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!isLastStep) return next();
-    alert("Successful Account Creation!");
-  }
-
+export const FormSection = ({ 
+  step,
+  steps,
+  goBack,
+  onSubmit,
+  isLastStep,
+  currentStep,
+  isFirstStep,
+}: FormProps) => {
   return (
     <S.Container>
       <S.Form onSubmit={onSubmit}>
-        <S.StepCounter>{currentStep + 1} / {steps.length}</S.StepCounter>
 
         {step}
 
         <S.ButtonsWrapper>
-          {!isFirstStep && <S.Button id="back-button" type="button" onClick={(e: any) => goBack(e)}>Back</S.Button>}
+          {!isFirstStep && <S.Button id="back-button" type="button" onClick={(e: any) => goBack(e)}>Go Back</S.Button>}
           {/* {!isLastStep && <S.Button id="next-button" onClick={next}>Next</S.Button>} */}
           <S.Button type="submit">
-            {isLastStep ? "Finish" : "Next"}
+            {isLastStep ? "Finish" : "Next Step"}
           </S.Button>
         </S.ButtonsWrapper>
       </S.Form>

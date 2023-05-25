@@ -1,4 +1,4 @@
-import * as S from "./styles.js";
+import * as S from "./styles.ts";
 
 const SIDEBAR_STEPS = [
   {
@@ -19,13 +19,17 @@ const SIDEBAR_STEPS = [
   },
 ]
 
-export const ProgressDashboard = () => {
+type ProgressProps = {
+  currentStep: number
+}
+
+export const ProgressDashboard = ({ currentStep }: ProgressProps) => {
   return (
     <S.Sidebar>
       <S.List>
         {SIDEBAR_STEPS.map(item => (
           <S.Item key={item.step}>
-            <S.ItemNumber>{item.step}</S.ItemNumber>
+            <S.ItemNumber isActive={currentStep + 1 === item.step}>{item.step}</S.ItemNumber>
             <S.ItemStepWrapper>
               <S.ItemStepLabel>STEP {item.step}</S.ItemStepLabel>
               <S.ItemStepTitle>{item.title}</S.ItemStepTitle>

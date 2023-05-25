@@ -8,7 +8,7 @@ export const colorSkyBlue = "hsl(206, 94%, 87%)";
 export const colorStrawberry = "hsl(354, 84%, 57%)";
 // -- Neutral
 export const colorCool = "hsl(231, 11%, 63%)";
-export const colorGreyLight = "hsl(229, 24%, 87%)";
+export const colorGreyLight = "hsl(231, 23%, 87%)";
 export const colorMagnolia = "hsl(217, 100%, 97%)";
 export const colorAlabaster = "hsl(231, 100%, 99%)";
 export const colorWhite = "hsl(0, 0%, 100%)";

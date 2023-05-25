@@ -16,6 +16,7 @@ export const PersonalInfoStep = ({ name, email, phone, updateFields }: PersonalF
   return (
     <FormWrapper 
       title="Personal info"
+      isColumn={true}
       subtitle="Please provide your name, email address, and phone number."
     >
       <S.Label>Name</S.Label>
@@ -24,7 +25,7 @@ export const PersonalInfoStep = ({ name, email, phone, updateFields }: PersonalF
       required 
       type="text" 
       value={name}
-      // onChange={(e: FormEvent<HTMLInputElement>) => console.log({ eTarget: e.target })}
+      placeholder="e.g. Stephen King"
       onChange={(e: FormEvent<HTMLInputElement>) => updateFields({ name: e.target.value })}
       />
       <S.Label>E-mail</S.Label>
@@ -32,6 +33,7 @@ export const PersonalInfoStep = ({ name, email, phone, updateFields }: PersonalF
         required
         type="email"
         value={email}
+        placeholder="e.g. stephenking@lorem.com"
         onChange={(e: FormEvent<HTMLInputElement>) => updateFields({ email: e.target.value })}
       />
       <S.Label>Phone Number</S.Label>
@@ -39,6 +41,7 @@ export const PersonalInfoStep = ({ name, email, phone, updateFields }: PersonalF
         required
         type="text"
         value={phone}
+        placeholder="e.g. +1 234 567 890"
         onChange={(e: FormEvent<HTMLInputElement>) => updateFields({ phone: e.target.value })}
       />
     </FormWrapper>
