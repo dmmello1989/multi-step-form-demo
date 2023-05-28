@@ -177,3 +177,7 @@ export const ToggleSwitch = styled.label`
     -ms-transform: translateX(18px);
   }
 `;
+
+export const Box = styled.div`
+  padding: 16px 24px 20px;
+`;

@@ -28,14 +28,15 @@ export const AddonsStep = ({ addons, updateFields }: AddonsFormProps) => {
       title="Pick add-ons"
       subtitle="Add-ons help enhance your gaming experience."
     >
-      <S.Label for="online-service">Online service</S.Label>
-      <S.Input 
-        type="checkbox"
-        id="online-service"
-        name="online-service"
-        checked={selectedAddons.includes("online-service")}
-        onChange={() => handleAddonSelection("online-service")}
-      />
+      <S.Box>
+        <S.HiddenInput
+          type="checkbox"
+          id="online-service"
+          name="online-service"
+          checked={selectedAddons.includes("online-service")}
+          onChange={() => handleAddonSelection("online-service")}
+        />
+      </S.Box>
       <S.Label for="larger-storage">Larger storage</S.Label>
       <S.Input 
         type="checkbox"
