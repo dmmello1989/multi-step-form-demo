@@ -64,7 +64,7 @@ export const Input = styled.input`
   }
 `;
 
-export const CardsWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0 18px;
@@ -178,6 +178,86 @@ export const ToggleSwitch = styled.label`
   }
 `;
 
-export const Box = styled.div`
+export const AddonBox = styled.div<Props>`
+  position: relative;
   padding: 16px 24px 20px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 2px solid ${pallette.colorGreyLight};
+  cursor: pointer;
+
+  & + & {
+    margin-top: 16px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: 2px solid ${pallette.colorGreyLight};
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 3px);
+    left: 28px;
+    width: 5px;
+    height: 10px;
+    border-width: 0 3px 3px 0;
+    border: solid ${pallette.colorWhite};
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    -ms-transform: rotate(45deg) translateY(-50%);
+    transform: rotate(45deg) translateY(-50%);
+  }
+
+  &:hover {
+    border-color: ${pallette.colorPurplish};
+  }
+
+  &:has([type="checkbox"]:checked) {
+    background-color: ${pallette.colorMagnolia};
+    border: 2px solid ${pallette.colorPurplish};
+
+    &::before {
+      border-color: ${pallette.colorPurplish};
+      background-color: ${pallette.colorPurplish};
+    }
+
+    &::after {
+      border-color: #fff;
+    }
+  }
+`;
+
+export const BoxCheck = styled.img<Props>`
+  display: none;
+
+  ${props => props.isSelected && `
+    display: block;
+  `};
+`;
+
+export const AddonTitle = styled.span`
+  display: block;
+  margin: 0 0 7px 34px;
+  font: 500 1rem Ubuntu;
+  color: ${pallette.colorMarine};
+`;
+
+export const AddonText = styled.p`
+  margin: 0 0 0 34px;
+  font: 400 .9375rem Ubuntu;
+  color: ${pallette.colorCool};
+`;
+
+export const AddonPrice = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 24px;
 `;

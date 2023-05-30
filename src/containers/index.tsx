@@ -13,6 +13,7 @@ type FormData = {
   email: string,
   phone: string,
   plan: string,
+  planType: string,
   addons: string[]
 };
 
@@ -21,6 +22,7 @@ const INITIAL_DATA: FormData = {
   email: "",
   phone: "",
   plan: "arcade",
+  planType: "monthly",
   addons: []
 };
 
