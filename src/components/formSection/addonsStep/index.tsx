@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FormWrapper } from "../formWrapper/index.js";
-import IconCheck from "../../../assets/icon-checkmark.svg";
 import * as S from "../styles.js";
 
 type AddonsProps = {
@@ -36,10 +35,9 @@ const ADDONS = [
   },
 ];
 
-export const AddonsStep = ({ planType, addons, updateFields }: AddonsFormProps) => {
-  const [selectedAddons , setSelectedAddons] = useState<string[]>([]);
+export const AddonsStep = ({ addons, planType, updateFields }: AddonsFormProps) => {
+  const [selectedAddons , setSelectedAddons] = useState<string[]>(addons);
 
-  console.log({planType})
 
   const handleAddonSelection = (addon: string) => {
     console.log("função handleAddonSelection: ", addon)
@@ -58,8 +56,8 @@ export const AddonsStep = ({ planType, addons, updateFields }: AddonsFormProps) 
       subtitle="Add-ons help enhance your gaming experience."
     >
       {ADDONS.map(addon => {
-        // const handlePriceCard = planType === "monthly" ? `$${addon.priceMonthly}/mo` : `$${addon.priceYearly}/yr`;
-        const handlePriceAddon = null;
+        console.log("qual é o planType no map: ", planType)
+        const handlePriceAddon = planType === "monthly" ? `$${addon.priceMonthly}/mo` : `$${addon.priceYearly}/yr`;
         const isSelected = selectedAddons.includes(addon.id)
 
         return (

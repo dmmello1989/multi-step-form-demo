@@ -5,7 +5,10 @@ import IconCheck from "../../assets/icon-checkmark.svg";
 type Props = {
   isSelected?: boolean,
   isToggleActive?: boolean,
-}
+  isPlanTitle?: boolean,
+  isMedium?: boolean,
+  isBig?: boolean
+};
 
 export const Container = styled.div`
   position: relative;
@@ -256,4 +259,45 @@ export const AddonPrice = styled.div`
   position: absolute;
   top: 50%;
   right: 24px;
+  font: 400 0.875rem Ubuntu;
+  color: ${pallette.colorPurplish};
+`;
+
+export const SummaryBox = styled.div`
+  display: grid;
+  grid-gap: 10px;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+`;
+
+export const SummaryListItem = styled.div`
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+`;
+
+export const SummaryText = styled.div<Props>`
+  grid-column: 1;
+  color: ${pallette.colorCool};
+
+  ${props => props.isPlanTitle && `
+    font: 500 1rem Ubuntu;
+    color: ${pallette.colorMarine};
+    text-transform: capitalize;
+  `};
+`;
+
+export const SummaryPrice = styled.div<Props>`
+  grid-column: 2;
+  color: ${pallette.colorMarine};
+
+  ${props => props.isMedium && `
+    font: 700 1rem Ubuntu;
+  `};
+
+  ${props => props.isBig && `
+    font: 700 1.25rem Ubuntu;
+    color: ${pallette.colorPurplish};
+  `};
 `;

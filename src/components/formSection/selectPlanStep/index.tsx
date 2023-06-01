@@ -7,6 +7,7 @@ import * as S from "../styles.ts";
 
 type PlanProps = {
   plan: string,
+  planType: string
 };
 
 type PlanFormProps = PlanProps & {
@@ -35,10 +36,22 @@ const CARDS = [
   },
 ];
 
-export const SelectPlanStep = ({ plan, updateFields }: PlanFormProps) => {
+export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) => {
   const [selectedPlan, setSelectedPlan] = useState(plan);
-  const [planLength, setPlanLength] = useState("monthly");
-  const newPlanLength = planLength === "monthly" ? "yearly" : "monthly";
+  const [selectedPlanType, setSelectedPlanType] = useState("monthly");
+  const newPlanLength = selectedPlanType === "monthly" ? "yearly" : "monthly";
+
+  console.log("plan [selectPlanStep]: ", plan)
+
+  const doSelectPlan = (selectedPlan: string) => {
+    setSelectedPlan(selectedPlan);
+    updateFields({ plan: selectedPlan });
+  }
+
+  const doSelectPlanType = (planType: string) =>  {
+    setSelectedPlanType(planType);
+    updateFields({ planType: planType })
+  }
 
   return (
     <FormWrapper
@@ -48,10 +61,10 @@ export const SelectPlanStep = ({ plan, updateFields }: PlanFormProps) => {
     >
       <S.Wrapper>
         {CARDS.map(card => {
-          const handlePriceCard = planLength === "monthly" ? `$${card.priceMonthly}/mo` : `$${card.priceYearly}/yr`;
+          const handlePriceCard = selectedPlanType === "monthly" ? `$${card.priceMonthly}/mo` : `$${card.priceYearly}/yr`;
 
           return (
-            <S.Card isSelected={plan === card.title} key={`plan-card-${card.title}`} onClick={() => setSelectedPlan(card.title)}>
+            <S.Card isSelected={plan === card.title} key={`plan-card-${card.title}`} onClick={() => doSelectPlan(card.title)}>
               <S.CardImage src={card.image} alt={card.title} />
 
               <div>
@@ -71,17 +84,17 @@ export const SelectPlanStep = ({ plan, updateFields }: PlanFormProps) => {
       </S.Wrapper>
 
       <S.ToggleWrapper>
-        <S.ToggleLabel isToggleActive={planLength === "monthly"}>Montlhy</S.ToggleLabel>
+        <S.ToggleLabel isToggleActive={planType === "monthly"}>Montlhy</S.ToggleLabel>
         <S.ToggleSwitch>
           <S.ToggleSlider />
           <S.HiddenInput 
             type="checkbox"
             aria-hidden="true"
-            checked={planLength === "yearly"}
-            onChange={() => setPlanLength(newPlanLength)} 
+            checked={planType === "yearly"}
+            onChange={() => doSelectPlanType(newPlanLength)} 
           />
         </S.ToggleSwitch>
-        <S.ToggleLabel isToggleActive={planLength === "yearly"}>Yearly</S.ToggleLabel>
+        <S.ToggleLabel isToggleActive={planType === "yearly"}>Yearly</S.ToggleLabel>
       </S.ToggleWrapper>
     </FormWrapper>
   )

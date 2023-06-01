@@ -30,10 +30,15 @@ export const MultiStepForm = () => {
   const [data, setData] = useState(INITIAL_DATA);
 
   const updateFields = (fields: Partial<FormData>) => {
+    console.log(fields)
     setData(prevState => {
       return { ...prevState, ...fields }
     });
   };
+
+  const getData = () => {
+    return data;
+  }
 
   const goBack = (e: Event) => {
     e.preventDefault();
@@ -47,11 +52,13 @@ export const MultiStepForm = () => {
     alert("Successful Account Creation!");
   }
 
+  console.log("data: ", data)
+
 
   const { step, steps, back, next, currentStep, isFirstStep, isLastStep } = useMultistepForm([
     <PersonalInfoStep updateFields={updateFields} {...data} />, 
-    <SelectPlanStep updateFields={updateFields} {...data} />, 
-    <AddonsStep updateFields={updateFields} {...data} />, 
+    <SelectPlanStep updateFields={updateFields} plan={data.plan} planType={data.planType} />, 
+    <AddonsStep updateFields={updateFields} planType={data.planType} addons={data.addons} />, 
     <SummaryStep data={data} />
   ]);
 
