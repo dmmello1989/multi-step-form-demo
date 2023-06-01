@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as pallette from "../../styles/pallette";
+import IconCheck from "../../assets/icon-checkmark.svg";
 
 type Props = {
   isSelected?: boolean,
@@ -205,15 +206,10 @@ export const AddonBox = styled.div<Props>`
   &::after {
     content: '';
     position: absolute;
-    top: calc(50% - 3px);
-    left: 28px;
-    width: 5px;
-    height: 10px;
-    border-width: 0 3px 3px 0;
-    border: solid ${pallette.colorWhite};
-    -webkit-transform: rotate(45deg) translateY(-50%);
-    -ms-transform: rotate(45deg) translateY(-50%);
-    transform: rotate(45deg) translateY(-50%);
+    top: calc(50% - 5px);
+    left: 26px;
+    width: 16px;
+    height: 11px;
   }
 
   &:hover {
@@ -228,9 +224,9 @@ export const AddonBox = styled.div<Props>`
       border-color: ${pallette.colorPurplish};
       background-color: ${pallette.colorPurplish};
     }
-
+    
     &::after {
-      border-color: #fff;
+      background: url(${IconCheck}) center/cover no-repeat;
     }
   }
 `;

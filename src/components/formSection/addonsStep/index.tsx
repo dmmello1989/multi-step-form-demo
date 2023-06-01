@@ -65,7 +65,6 @@ export const AddonsStep = ({ planType, addons, updateFields }: AddonsFormProps) 
         return (
           // <S.Box isSelected={plan === addon.title} key={`plan-addon-${addon.title}`} onClick={() => setSelectedPlan(addon.title)}>
           <S.AddonBox isSelected={isSelected} key={`addon-${addon.id}`} onClick={() => handleAddonSelection(addon.id)}>
-            <S.BoxCheck src={IconCheck} alt="" isSelected={isSelected} />
             <S.AddonTitle>{addon.title}</S.AddonTitle>
             <S.AddonText>{addon.text}</S.AddonText>
             <S.AddonPrice>{handlePriceAddon}</S.AddonPrice>
