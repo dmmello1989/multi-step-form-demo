@@ -36,10 +36,6 @@ export const MultiStepForm = () => {
     });
   };
 
-  const getData = () => {
-    return data;
-  }
-
   const goBack = (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
@@ -59,7 +55,7 @@ export const MultiStepForm = () => {
     <PersonalInfoStep updateFields={updateFields} {...data} />, 
     <SelectPlanStep updateFields={updateFields} plan={data.plan} planType={data.planType} />, 
     <AddonsStep updateFields={updateFields} planType={data.planType} addons={data.addons} />, 
-    <SummaryStep data={data} />
+    <SummaryStep updateFields={updateFields} planType={data.planType} data={data} />
   ]);
 
   return (

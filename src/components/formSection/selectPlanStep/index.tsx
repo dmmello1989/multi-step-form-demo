@@ -84,7 +84,12 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
       </S.Wrapper>
 
       <S.ToggleWrapper>
-        <S.ToggleLabel isToggleActive={planType === "monthly"}>Montlhy</S.ToggleLabel>
+        <S.ToggleLabel 
+          isToggleActive={planType === "monthly"}
+          onClick={() => doSelectPlanType(newPlanLength)}
+        >
+          Montlhy
+        </S.ToggleLabel>
         <S.ToggleSwitch>
           <S.ToggleSlider />
           <S.HiddenInput 
@@ -94,7 +99,12 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
             onChange={() => doSelectPlanType(newPlanLength)} 
           />
         </S.ToggleSwitch>
-        <S.ToggleLabel isToggleActive={planType === "yearly"}>Yearly</S.ToggleLabel>
+        <S.ToggleLabel
+          isToggleActive={planType === "yearly"}
+          onClick={() => doSelectPlanType(newPlanLength)}
+        >
+          Yearly
+        </S.ToggleLabel>
       </S.ToggleWrapper>
     </FormWrapper>
   )

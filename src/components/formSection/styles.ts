@@ -7,7 +7,8 @@ type Props = {
   isToggleActive?: boolean,
   isPlanTitle?: boolean,
   isMedium?: boolean,
-  isBig?: boolean
+  isBig?: boolean,
+  coloredBg?: boolean
 };
 
 export const Container = styled.div`
@@ -135,6 +136,7 @@ export const ToggleLabel = styled.span<Props>`
   display: block;
   font: 700 0.875rem Ubuntu;
   color: ${pallette.colorCool};
+  cursor: pointer;
 
   ${props => props.isToggleActive && `
     color: ${pallette.colorMarine};
@@ -263,18 +265,35 @@ export const AddonPrice = styled.div`
   color: ${pallette.colorPurplish};
 `;
 
-export const SummaryBox = styled.div`
+export const SummaryBox = styled.div<Props>`
   display: grid;
-  grid-gap: 10px;
   width: 100%;
   max-width: 450px;
   margin: 0 auto;
+  padding: 0 24px 24px;
+  border-radius: 8px;
+
+  ${props => props.coloredBg && `
+    background-color: ${pallette.colorAlabaster}; 
+  `};
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  opacity: 0.2;
+  background-color: ${pallette.colorCool};
 `;
 
 export const SummaryListItem = styled.div`
   display: flex;
+  padding-top: 16px;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
+
+  &:first-of-type:not(:only-child) {
+    padding-bottom: 24px;
+  }
 `;
 
 export const SummaryText = styled.div<Props>`
@@ -286,6 +305,17 @@ export const SummaryText = styled.div<Props>`
     color: ${pallette.colorMarine};
     text-transform: capitalize;
   `};
+`;
+
+export const SummaryChangeButton = styled.button`
+  display: block;
+  margin-top: 7px;
+  padding: 0;
+  font: 400 0.875rem Ubuntu;
+  color: ${pallette.colorCool};
+  border: none;
+  box-shadow: none;
+  text-decoration: underline;
 `;
 
 export const SummaryPrice = styled.div<Props>`

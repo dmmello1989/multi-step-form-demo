@@ -1,4 +1,4 @@
-import { usePrices } from "../../../hooks/usePrices.js"; 
+import useSummary from "../../../hooks/useSummary.js";
 import { FormWrapper } from "../formWrapper/index.js";
 import * as S from "../styles.js";
 
@@ -11,42 +11,54 @@ type SummaryProps = {
     addons: string[],
     plan: string
     planType: string
-  }
+  },
+  planType: string
 };
 
-export const SummaryStep = ({ data }: SummaryProps) => {
-  const prices: Prices = usePrices(data.planType);
+type SummaryFormProps = SummaryProps & {
+  updateFields: (fields: Partial<SummaryProps>) => void
+};
 
-  const addonsTotal = data.addons.reduce(
-    (acc, addon) => acc + (prices[addon] || 0),
-    0
-  );
-  const total = prices[data.plan] + addonsTotal;
-    
-    console.log("prices no summary: ", prices)
-    console.log("data no summary: ", data)
-    console.log("addonsTotal no summary: ", addonsTotal)
-    console.log("total no summary: ", total)
-    
+export const SummaryStep = ({ data, updateFields }: SummaryFormProps) => {
+  const { planTypeObject, updatedPlanType, addonsObject, total, priceObject } = useSummary(data, updateFields);
+
+  console.log({
+    planTypeObject,
+    updatedPlanType,
+    addonsObject,
+    priceObject,
+    total
+  })
+
   return (
     <FormWrapper
+      isColumn
       title="Finishing up"
       subtitle="Double-check everything looks OK before confirming."
     >
-        <S.SummaryBox>
+        <S.SummaryBox coloredBg>
           <S.SummaryListItem>
-            <S.SummaryText isPlanTitle>{`${data.plan} (${data.planType})`}</S.SummaryText>
-            <S.SummaryPrice isMedium>{prices[data.plan]}</S.SummaryPrice>
+            <div>
+              <S.SummaryText isPlanTitle>{`${data.plan} (${data.planType})`}</S.SummaryText>
+              <S.SummaryChangeButton type="button" onClick={() => updateFields({ planType: updatedPlanType })}>Change</S.SummaryChangeButton>
+            </div>
+            <S.SummaryPrice isMedium>{priceObject.planPrice}</S.SummaryPrice>
           </S.SummaryListItem>
-          {data.addons.map((addon) => (
-            <S.SummaryListItem key={addon}>
-              <S.SummaryText>{addon}</S.SummaryText>
-              <S.SummaryPrice>{prices[addon]}</S.SummaryPrice>
+
+          <S.Divider />
+
+          {addonsObject.map((addon, index) => (
+            <S.SummaryListItem key={addon.id}>
+              <S.SummaryText>{addon.text}</S.SummaryText>
+              <S.SummaryPrice>{priceObject.addonPrice[index]}</S.SummaryPrice>
             </S.SummaryListItem>
           ))}
+        </S.SummaryBox>
+
+        <S.SummaryBox>
           <S.SummaryListItem>
-            <S.SummaryText>Total</S.SummaryText>
-            <S.SummaryPrice isBig>{total}</S.SummaryPrice>
+            <S.SummaryText>Total (per {planTypeObject.shortName})</S.SummaryText>
+            <S.SummaryPrice isBig>{priceObject.totalPrice}</S.SummaryPrice>
           </S.SummaryListItem>
         </S.SummaryBox>
     </FormWrapper>
