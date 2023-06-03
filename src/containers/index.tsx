@@ -1,6 +1,7 @@
-import { FormEvent, useState } from "react";
-import { AddonsStep } from "../components/formSection/addonsStep/index.tsx";
+import { FormEvent } from "react";
+import { useFormData } from "../hooks/useFormData.ts";
 import { FormSection } from "../components/formSection/index.js";
+import { AddonsStep } from "../components/formSection/addonsStep/index.tsx";
 import { PersonalInfoStep } from "../components/formSection/personalInfoStep/index.tsx";
 import { SelectPlanStep } from "../components/formSection/selectPlanStep/index.tsx";
 import { SummaryStep } from "../components/formSection/summaryStep/index.tsx";
@@ -8,33 +9,8 @@ import { ProgressDashboard } from "../components/progressDashboard/index.js";
 import { useMultistepForm } from "../hooks/useMultistepForm.ts";
 import * as S from "./styles.ts";
 
-type FormData = {
-  name: string,
-  email: string,
-  phone: string,
-  plan: string,
-  planType: string,
-  addons: string[]
-};
-
-const INITIAL_DATA: FormData = {
-  name: "",
-  email: "",
-  phone: "",
-  plan: "arcade",
-  planType: "monthly",
-  addons: []
-};
-
 export const MultiStepForm = () => {
-  const [data, setData] = useState(INITIAL_DATA);
-
-  const updateFields = (fields: Partial<FormData>) => {
-    console.log(fields)
-    setData(prevState => {
-      return { ...prevState, ...fields }
-    });
-  };
+  const [data, updateFields] = useFormData();
 
   const goBack = (e: Event) => {
     e.preventDefault();
@@ -47,9 +23,6 @@ export const MultiStepForm = () => {
     if (!isLastStep) return next();
     alert("Successful Account Creation!");
   }
-
-  console.log("data: ", data)
-
 
   const { step, steps, back, next, currentStep, isFirstStep, isLastStep } = useMultistepForm([
     <PersonalInfoStep updateFields={updateFields} {...data} />, 

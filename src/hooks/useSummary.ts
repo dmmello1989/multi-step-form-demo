@@ -36,9 +36,7 @@ type SummaryResult = {
   priceObject: PriceObject
 };
 
-type UpdateFieldsFunction = (fields: Partial<SummaryData>) => void;
-
-const useSummary = (data: SummaryData, updateFields: UpdateFieldsFunction): SummaryResult => {
+const useSummary = (data: SummaryData): SummaryResult => {
   const prices: Prices = usePrices(data.planType);
 
   const [planTypeObject, setPlanTypeObject] = useState<PlanTypeObject>({ longName: "monthly", shortName: "month", textPrice: "mo" });

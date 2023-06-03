@@ -2,7 +2,6 @@ import { FormWrapper } from "../formWrapper/index.js";
 import IconAdvanced from "../../../assets/icon-advanced.svg";
 import IconArcade from "../../../assets/icon-arcade.svg";
 import IconPro from "../../../assets/icon-pro.svg";
-import { useState } from "react";
 import * as S from "../styles.ts";
 
 type PlanProps = {
@@ -37,21 +36,7 @@ const CARDS = [
 ];
 
 export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) => {
-  const [selectedPlan, setSelectedPlan] = useState(plan);
-  const [selectedPlanType, setSelectedPlanType] = useState("monthly");
-  const newPlanLength = selectedPlanType === "monthly" ? "yearly" : "monthly";
-
-  console.log("plan [selectPlanStep]: ", plan)
-
-  const doSelectPlan = (selectedPlan: string) => {
-    setSelectedPlan(selectedPlan);
-    updateFields({ plan: selectedPlan });
-  }
-
-  const doSelectPlanType = (planType: string) =>  {
-    setSelectedPlanType(planType);
-    updateFields({ planType: planType })
-  }
+  const newPlanLength = planType === "monthly" ? "yearly" : "monthly";
 
   return (
     <FormWrapper
@@ -61,10 +46,14 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
     >
       <S.Wrapper>
         {CARDS.map(card => {
-          const handlePriceCard = selectedPlanType === "monthly" ? `$${card.priceMonthly}/mo` : `$${card.priceYearly}/yr`;
+          const handlePriceCard = planType === "monthly" ? `$${card.priceMonthly}/mo` : `$${card.priceYearly}/yr`;
 
           return (
-            <S.Card isSelected={plan === card.title} key={`plan-card-${card.title}`} onClick={() => doSelectPlan(card.title)}>
+            <S.Card 
+              key={`plan-card-${card.title}`}
+              isSelected={plan === card.title}
+              onClick={() => updateFields({ plan: card.title })}
+            >
               <S.CardImage src={card.image} alt={card.title} />
 
               <div>
@@ -74,7 +63,7 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
                   type="radio"
                   name="plans"
                   aria-hidden="true"
-                  checked={selectedPlan === card.title}
+                  checked={plan === card.title}
                   onChange={() => updateFields({ plan: card.title })}
                 />
               </div>
@@ -86,7 +75,7 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
       <S.ToggleWrapper>
         <S.ToggleLabel 
           isToggleActive={planType === "monthly"}
-          onClick={() => doSelectPlanType(newPlanLength)}
+          onClick={() => updateFields({ planType: newPlanLength })}
         >
           Montlhy
         </S.ToggleLabel>
@@ -96,12 +85,12 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
             type="checkbox"
             aria-hidden="true"
             checked={planType === "yearly"}
-            onChange={() => doSelectPlanType(newPlanLength)} 
+            onChange={() => updateFields({ planType: newPlanLength })} 
           />
         </S.ToggleSwitch>
         <S.ToggleLabel
           isToggleActive={planType === "yearly"}
-          onClick={() => doSelectPlanType(newPlanLength)}
+          onClick={() => updateFields({ planType: newPlanLength })}
         >
           Yearly
         </S.ToggleLabel>

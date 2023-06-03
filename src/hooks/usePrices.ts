@@ -22,11 +22,10 @@ export const usePrices = (planType: string) => {
   const [priceObj, setPriceObj] = useState(monthlyPrices);
 
   useEffect(() => {
-    console.log("plantype mudou né: ", planType)
     if (planType === "yearly") {
       setPriceObj(yearlyPrices);
     } else {
-      setPriceObj(yearlyPrices);
+      setPriceObj(monthlyPrices);
     }
   }, [planType]);
 

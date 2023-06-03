@@ -2,10 +2,6 @@ import useSummary from "../../../hooks/useSummary.js";
 import { FormWrapper } from "../formWrapper/index.js";
 import * as S from "../styles.js";
 
-type Prices = {
-  [key: string]: number;
-};
-
 type SummaryProps = {
   data: {
     addons: string[],
@@ -20,15 +16,7 @@ type SummaryFormProps = SummaryProps & {
 };
 
 export const SummaryStep = ({ data, updateFields }: SummaryFormProps) => {
-  const { planTypeObject, updatedPlanType, addonsObject, total, priceObject } = useSummary(data, updateFields);
-
-  console.log({
-    planTypeObject,
-    updatedPlanType,
-    addonsObject,
-    priceObject,
-    total
-  })
+  const { planTypeObject, updatedPlanType, addonsObject, priceObject } = useSummary(data);
 
   return (
     <FormWrapper
