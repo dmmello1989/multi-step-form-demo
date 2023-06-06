@@ -16,6 +16,12 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 40px 100px 16px;
+
+  @media (max-width: 1023px) {
+    flex-direction: row;
+    padding: 16px;
+    background-color: ${pallette.colorMagnolia};
+  }
 `;
 
 export const Form = styled.form`
@@ -24,6 +30,10 @@ export const Form = styled.form`
   justify-content: space-between;
   width: 100%;
   height: 100%;
+
+  @media (max-width: 1023px) {
+    background-color: ${pallette.colorWhite};
+  }
 `;
 
 export const Footer = styled.div`

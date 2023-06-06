@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as pallette from "../../styles/pallette";
 import BgDesktop from "../../assets/bg-sidebar-desktop.svg";
+import BgMobile from "../../assets/bg-sidebar-mobile.svg";
 
 type Props = {
   isActive: boolean
@@ -10,10 +11,17 @@ export const Sidebar = styled.div`
   flex-shrink: 0;
   width: 100%;
   max-width: 274px;
-  height: 100%;
+  height: auto;
   height: 568px;
   padding: 40px 32px;
   background: url(${BgDesktop}) center/cover no-repeat;
+
+  @media (max-width: 1023px) {
+    max-width: 100%;
+    height: 172px;
+    padding: 32px;
+    background: url(${BgMobile}) center/cover no-repeat;
+  }
 `;
 
 export const List = styled.ul`
@@ -21,6 +29,11 @@ export const List = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
+  @media (max-width: 1023px) {
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
 
 export const Item = styled.li`
@@ -29,6 +42,12 @@ export const Item = styled.li`
 
   & + & {
     margin-top: 32px;
+  }
+
+  @media (max-width: 1023px) {
+    & + & {
+      margin: 0;
+    }
   }
 `;
 
@@ -54,6 +73,10 @@ export const ItemNumber = styled.div<Props>`
 export const ItemStepWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
 `;
 
 export const ItemStepLabel = styled.span`

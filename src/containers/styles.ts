@@ -25,4 +25,13 @@ export const Box = styled.div`
   border-radius: 15px;
   box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.09);
   background-color: ${pallette.colorWhite};
+
+  @media (max-width: 1023px) {
+    flex-direction: column;
+    max-width: 100%;
+    height: auto;
+    max-height: fit-content;
+    padding: 0;
+    border-radius: 0;
+  }
 `;
