@@ -67,6 +67,14 @@ export const Input = styled.input`
     color: ${pallette.colorCool};;
     opacity: 1;
   }
+
+  &:focus {
+    border: 1px solid ${pallette.colorPurplish};
+  }
+
+  &:invalid:not(:placeholder-shown):not(:focus) {
+    border: 1px solid ${pallette.colorStrawberry};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -83,7 +91,6 @@ export const Card = styled.div<Props>`
   flex-shrink: 0;
   justify-content: space-between;
   width: 138px;
-  height: 160px;
   padding: 20px 16px;
   border-radius: 8px;
   border: 1px solid ${pallette.colorGreyLight};
@@ -100,6 +107,7 @@ export const CardImage = styled.img`
   display: block;
   width: 40px;
   height: 40px;
+  margin-bottom: 39px;
 `;
 
 export const CardTitle = styled.span`
@@ -115,6 +123,13 @@ export const CardPrice = styled.span`
   font: 400 0.875rem Ubuntu;
   line-height: 16.09px;
   color: ${pallette.colorCool};
+`;
+
+export const MonthsFree = styled.span`
+  display: block;
+  margin: 6px 0 0;
+  font: 400 0.75rem Ubuntu;
+  color: ${pallette.colorMarine};
 `;
 
 export const HiddenInput = styled.input`

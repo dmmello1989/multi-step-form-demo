@@ -15,19 +15,44 @@ const INITIAL_DATA: FormData = {
   phone: "",
   plan: "arcade",
   planType: "monthly",
-  addons: []
+  addons: [],
 };
 
-export const useFormData = (): [FormData, (fields: Partial<FormData>) => void] => {
+export const useFormData = (): [FormData, Partial<FormData>, (fields: Partial<FormData>) => void] => {
   const [data, setData] = useState<FormData>(INITIAL_DATA);
+  const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const updateFields = (fields: Partial<FormData>) => {
-    setData(prevState => {
-      return { ...prevState, ...fields }
-    });
+    const updatedData = { ...data, ...fields };
+    const updatedErrors: Partial<FormData> = {};
+
+    // Realizar validação dos campos obrigatórios
+    if (!updatedData.name) {
+      updatedErrors.name = "Name is required";
+    }
+
+    if (!updatedData.email) {
+      updatedErrors.email = "Email is required";
+    }
+
+    if (!updatedData.phone) {
+      updatedErrors.phone = "Phone is required";
+    }
+
+    if (!updatedData.plan) {
+      updatedErrors.plan = "Plan is required";
+    }
+
+    if (!updatedData.planType) {
+      updatedErrors.planType = "Plan Type is required";
+    }
+
+    // Atualizar os dados e os erros de validação
+    setData(updatedData);
+    setErrors(updatedErrors);
   };
 
-  console.log("data [useFormData]: ", data)
+  console.log("data [useFormData]: ", data);
 
-  return [data, updateFields];
+  return [data, errors, updateFields];
 };

@@ -10,7 +10,16 @@ import { useMultistepForm } from "../hooks/useMultistepForm.ts";
 import * as S from "./styles.ts";
 
 export const MultiStepForm = () => {
-  const [data, updateFields] = useFormData();
+  const [data, errors, updateFields] = useFormData();
+
+  const { step, steps, back, next, goTo, currentStep, isFirstStep, isLastStep } = useMultistepForm([
+    <PersonalInfoStep updateFields={updateFields} {...data} />, 
+    <SelectPlanStep updateFields={updateFields} plan={data.plan} planType={data.planType} />, 
+    <AddonsStep updateFields={updateFields} planType={data.planType} addons={data.addons} />, 
+    <SummaryStep updateFields={updateFields} planType={data.planType} data={data} />
+  ]);
+
+  const notAllowed = currentStep === 0 && (!data.name || !data.email || !data.phone);
 
   const goBack = (e: Event) => {
     e.preventDefault();
@@ -20,21 +29,20 @@ export const MultiStepForm = () => {
   
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+  
+    console.log(errors)
+    if (notAllowed) {
+      return ;
+    }
+
     if (!isLastStep) return next();
     alert("Successful Account Creation!");
   }
 
-  const { step, steps, back, next, currentStep, isFirstStep, isLastStep } = useMultistepForm([
-    <PersonalInfoStep updateFields={updateFields} {...data} />, 
-    <SelectPlanStep updateFields={updateFields} plan={data.plan} planType={data.planType} />, 
-    <AddonsStep updateFields={updateFields} planType={data.planType} addons={data.addons} />, 
-    <SummaryStep updateFields={updateFields} planType={data.planType} data={data} />
-  ]);
-
   return (
     <S.Body>
       <S.Box>
-        <ProgressDashboard currentStep={currentStep} />
+        <ProgressDashboard currentStep={currentStep} goTo={goTo} data={data} />
         <FormSection
           step={step}
           steps={steps}

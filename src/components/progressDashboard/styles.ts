@@ -43,6 +43,7 @@ export const ItemNumber = styled.div<Props>`
   font: 700 0.875rem Ubuntu;
   background-color: transparent;
   border: 1px solid ${pallette.colorWhite};
+  cursor: pointer;
   
   ${props => props.isActive && `
     border: 1px solid ${pallette.colorSkyBlue};
@@ -60,11 +61,17 @@ export const ItemStepLabel = styled.span`
   margin-bottom: 4px;
   font: 400 0.75rem Ubuntu;
   color: ${pallette.colorLightBlue};
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 export const ItemStepTitle = styled.span`
   font: 700 0.875rem Ubuntu;
   letter-spacing: 1px;
   color: ${pallette.colorWhite};
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 

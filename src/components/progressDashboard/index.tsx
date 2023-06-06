@@ -20,15 +20,29 @@ const SIDEBAR_STEPS = [
 ]
 
 type ProgressProps = {
-  currentStep: number
-}
+  currentStep: number,
+  data: {
+    name: string,
+    email: string,
+    phone: string
+  },
+  goTo: (step: number) => void
+};
 
-export const ProgressDashboard = ({ currentStep }: ProgressProps) => {
+export const ProgressDashboard = ({ currentStep, goTo, data }: ProgressProps) => {
+  const handleGoTo = (newStep: number) => {
+    const notAllowed = currentStep === 0 && (!data.name || !data.email || !data.phone);
+
+    if (!notAllowed) {
+      return goTo(newStep);
+    }
+  };
+
   return (
     <S.Sidebar>
       <S.List>
         {SIDEBAR_STEPS.map(item => (
-          <S.Item key={item.step}>
+          <S.Item key={item.step} onClick={() => handleGoTo(item.step - 1)}>
             <S.ItemNumber isActive={currentStep + 1 === item.step}>{item.step}</S.ItemNumber>
             <S.ItemStepWrapper>
               <S.ItemStepLabel>STEP {item.step}</S.ItemStepLabel>

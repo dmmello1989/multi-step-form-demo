@@ -59,6 +59,7 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
               <div>
                 <S.CardTitle>{card.title}</S.CardTitle>
                 <S.CardPrice>{handlePriceCard}</S.CardPrice>
+                {planType === "yearly" ? <S.MonthsFree>2 months free</S.MonthsFree> : null}
                 <S.HiddenInput 
                   type="radio"
                   name="plans"
