@@ -33,5 +33,6 @@ export const Box = styled.div`
     max-height: fit-content;
     padding: 0;
     border-radius: 0;
+    background-color: ${pallette.colorMagnolia};
   }
 `;

@@ -6,7 +6,11 @@ type Props = {
 };
 
 export const Container = styled.div`
-  
+  @media (max-width: 767px) {
+    padding: 32px 24px;
+    border-radius: 10px;
+    background: ${pallette.colorWhite};
+  }
 `;
 
 export const Title = styled.h2`

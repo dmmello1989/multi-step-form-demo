@@ -61,10 +61,12 @@ export const ItemNumber = styled.div<Props>`
   border-radius: 50%;
   font: 700 0.875rem Ubuntu;
   background-color: transparent;
+  color: ${pallette.colorWhite};
   border: 1px solid ${pallette.colorWhite};
   cursor: pointer;
   
   ${props => props.isActive && `
+    color: ${pallette.colorMarine};
     border: 1px solid ${pallette.colorSkyBlue};
     background-color: ${pallette.colorSkyBlue};
   `};

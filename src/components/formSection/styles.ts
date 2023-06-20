@@ -19,8 +19,9 @@ export const Container = styled.div`
 
   @media (max-width: 1023px) {
     flex-direction: row;
+    margin: -100px auto 0;
     padding: 16px;
-    background-color: ${pallette.colorMagnolia};
+    background-color: transparent;
   }
 `;
 
@@ -32,6 +33,7 @@ export const Form = styled.form`
   height: 100%;
 
   @media (max-width: 1023px) {
+    border-radius: 10px;
     background-color: ${pallette.colorWhite};
   }
 `;
@@ -84,6 +86,10 @@ export const Input = styled.input`
 
   &:invalid:not(:placeholder-shown):not(:focus) {
     border: 1px solid ${pallette.colorStrawberry};
+  }
+
+  @media (max-width: 767px) {
+    width: 295px;
   }
 `;
 
