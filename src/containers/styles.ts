@@ -29,8 +29,8 @@ export const Box = styled.div`
   @media (max-width: 1023px) {
     flex-direction: column;
     max-width: 100%;
-    height: auto;
-    max-height: fit-content;
+    height: 667px;
+    max-height: 667px;
     padding: 0;
     border-radius: 0;
     background-color: ${pallette.colorMagnolia};

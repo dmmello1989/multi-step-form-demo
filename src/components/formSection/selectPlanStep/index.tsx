@@ -44,7 +44,7 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
       title="Select your plan"
       subtitle="You have the option of monthly or yearly biling."
     >
-      <S.Wrapper>
+      <S.CardWrapper>
         {CARDS.map(card => {
           const handlePriceCard = planType === "monthly" ? `$${card.priceMonthly}/mo` : `$${card.priceYearly}/yr`;
 
@@ -71,7 +71,7 @@ export const SelectPlanStep = ({ plan, planType, updateFields }: PlanFormProps) 
             </S.Card>
           )
         })}
-      </S.Wrapper>
+      </S.CardWrapper>
 
       <S.ToggleWrapper>
         <S.ToggleLabel 

@@ -30,7 +30,6 @@ export const MultiStepForm = () => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
   
-    console.log(errors)
     if (notAllowed) {
       return ;
     }

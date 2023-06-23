@@ -19,8 +19,8 @@ export const Container = styled.div`
 
   @media (max-width: 1023px) {
     flex-direction: row;
-    margin: -100px auto 0;
-    padding: 16px;
+    margin: -66px auto 0;
+    padding: 0;
     background-color: transparent;
   }
 `;
@@ -34,7 +34,6 @@ export const Form = styled.form`
 
   @media (max-width: 1023px) {
     border-radius: 10px;
-    background-color: ${pallette.colorWhite};
   }
 `;
 
@@ -42,6 +41,11 @@ export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+
+  @media (max-width: 1023px) {
+    padding: 16px;
+    background-color: ${pallette.colorWhite};
+  }
 `;
 
 export const Button = styled.button`
@@ -93,12 +97,17 @@ export const Input = styled.input`
   }
 `;
 
-export const Wrapper = styled.div`
+export const CardWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0 18px;
   width: 100%;
   margin-bottom: 32px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 12px 0;
+  }
 `;
 
 export const Card = styled.div<Props>`
@@ -117,6 +126,13 @@ export const Card = styled.div<Props>`
     background-color: ${pallette.colorMagnolia};
     border: 1px solid ${pallette.colorPurplish};
   }
+
+  @media (max-width: 767px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 14px 16px;
+  }
 `;
 
 export const CardImage = styled.img`
@@ -124,6 +140,10 @@ export const CardImage = styled.img`
   width: 40px;
   height: 40px;
   margin-bottom: 39px;
+
+  @media (max-width: 767px) {
+    margin: 0 14px 0 0;
+  }
 `;
 
 export const CardTitle = styled.span`
@@ -236,6 +256,7 @@ export const AddonBox = styled.div<Props>`
     height: 20px;
     transform: translateY(-50%);
     background-color: transparent;
+    border-radius: 3px;
     border: 2px solid ${pallette.colorGreyLight};
   }
 
@@ -265,6 +286,18 @@ export const AddonBox = styled.div<Props>`
       background: url(${IconCheck}) center/cover no-repeat;
     }
   }
+
+  @media (max-width: 767px) {
+    padding: 13px 16px 10px;
+
+    &::before {
+      left: 16px;
+    }
+
+    &::after {
+      left: 18px;
+    }
+  }
 `;
 
 export const BoxCheck = styled.img<Props>`
@@ -280,12 +313,23 @@ export const AddonTitle = styled.span`
   margin: 0 0 7px 34px;
   font: 500 1rem Ubuntu;
   color: ${pallette.colorMarine};
+
+  @media (max-width: 767px) {
+    margin: 0 0 3px 36px;
+    font-size: 0.875rem;
+  }
 `;
 
 export const AddonText = styled.p`
   margin: 0 0 0 34px;
   font: 400 .9375rem Ubuntu;
   color: ${pallette.colorCool};
+
+  @media (max-width: 767px) {
+    margin: 0 0 0 36px;
+    font-size: 0.75rem;
+    line-height: 20px;
+  }
 `;
 
 export const AddonPrice = styled.div`
@@ -294,6 +338,11 @@ export const AddonPrice = styled.div`
   right: 24px;
   font: 400 0.875rem Ubuntu;
   color: ${pallette.colorPurplish};
+  transform: translateY(-50%);
+
+  @media (max-width: 767px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const SummaryBox = styled.div<Props>`
@@ -304,8 +353,17 @@ export const SummaryBox = styled.div<Props>`
   padding: 0 24px 24px;
   border-radius: 8px;
 
+  @media (max-width: 1023px) {
+    padding: 0 24px;
+  }
+
   ${props => props.coloredBg && `
     background-color: ${pallette.colorAlabaster}; 
+
+    @media (max-width: 1023px) {
+      margin-bottom: 12px;
+      padding: 4px 16px 16px;
+    }
   `};
 `;
 
@@ -325,6 +383,14 @@ export const SummaryListItem = styled.div`
   &:first-of-type:not(:only-child) {
     padding-bottom: 24px;
   }
+
+  @media (max-width: 1023px) {
+    padding-top: 12px;
+
+    &:first-of-type:not(:only-child) {
+      padding-bottom: 12px;
+    }
+  }
 `;
 
 export const SummaryText = styled.div<Props>`
@@ -336,6 +402,10 @@ export const SummaryText = styled.div<Props>`
     color: ${pallette.colorMarine};
     text-transform: capitalize;
   `};
+
+  @media (max-width: 1023px) {
+    font-size: 0.875rem;
+  }
 `;
 
 export const SummaryChangeButton = styled.button`
@@ -357,8 +427,17 @@ export const SummaryPrice = styled.div<Props>`
     font: 700 1rem Ubuntu;
   `};
 
+  @media (max-width: 1023px) {
+    align-self: center;
+    font-size: 0.875rem;
+  }
+
   ${props => props.isBig && `
     font: 700 1.25rem Ubuntu;
     color: ${pallette.colorPurplish};
+
+    @media (max-width: 1023px) {
+      font-size: 1rem;
+    }
   `};
 `;
