@@ -28,23 +28,23 @@ export const useFormData = (): [FormData, Partial<FormData>, (fields: Partial<Fo
 
     // Realizar validação dos campos obrigatórios
     if (!updatedData.name) {
-      updatedErrors.name = "Name is required";
+      updatedErrors.name = "This field is required";
     }
 
     if (!updatedData.email) {
-      updatedErrors.email = "Email is required";
+      updatedErrors.email = "This field is required";
     }
 
     if (!updatedData.phone) {
-      updatedErrors.phone = "Phone is required";
+      updatedErrors.phone = "This field is required";
     }
 
     if (!updatedData.plan) {
-      updatedErrors.plan = "Plan is required";
+      updatedErrors.plan = "This field is required";
     }
 
     if (!updatedData.planType) {
-      updatedErrors.planType = "Plan Type is required";
+      updatedErrors.planType = "This field is required";
     }
 
     // Atualizar os dados e os erros de validação

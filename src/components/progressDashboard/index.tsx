@@ -41,15 +41,19 @@ export const ProgressDashboard = ({ currentStep, goTo, data }: ProgressProps) =>
   return (
     <S.Sidebar>
       <S.List>
-        {SIDEBAR_STEPS.map(item => (
-          <S.Item key={item.step} onClick={() => handleGoTo(item.step - 1)}>
-            <S.ItemNumber isActive={currentStep + 1 === item.step}>{item.step}</S.ItemNumber>
-            <S.ItemStepWrapper>
-              <S.ItemStepLabel>STEP {item.step}</S.ItemStepLabel>
-              <S.ItemStepTitle>{item.title}</S.ItemStepTitle>
-            </S.ItemStepWrapper>
-          </S.Item>
-        ))}
+        {SIDEBAR_STEPS.map(item => {
+          const isActive = currentStep + 1 === item.step;
+
+          return (
+            <S.Item key={item.step} onClick={() => handleGoTo(item.step - 1)}>
+              <S.ItemNumber isActive={isActive}>{item.step}</S.ItemNumber>
+              <S.ItemStepWrapper>
+                <S.ItemStepLabel>STEP {item.step}</S.ItemStepLabel>
+                <S.ItemStepTitle>{item.title}</S.ItemStepTitle>
+              </S.ItemStepWrapper>
+            </S.Item>
+          )
+        })}
       </S.List>
     </S.Sidebar>
   )

@@ -34,12 +34,16 @@ export const FormSection = ({
 
         {step}
 
-        <S.Footer>
-          {!isFirstStep ? <S.Button id="back-button" type="button" onClick={(e: any) => goBack(e)}>Go Back</S.Button> : <div />}
-          <S.Button type="submit">
-            {isLastStep ? "Finish" : "Next Step"}
-          </S.Button>
-        </S.Footer>
+        {!isLastStep ? (
+          <>
+            <S.Footer>
+              {!isFirstStep ? <S.Button id="back-button" type="button" onClick={(e: any) => goBack(e)}>Go Back</S.Button> : <div />}
+              <S.Button type="submit">
+                {isLastStep ? "Finish" : "Next Step"}
+              </S.Button>
+            </S.Footer>
+          </>
+        ) : null}
       </S.Form>
     </S.Container>
   )

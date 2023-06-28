@@ -5,8 +5,9 @@ export const FinishNoteStep = () => {
   return (
     <FormWrapper
       isColumn
-      title="Finishing up"
-      subtitle="Double-check everything looks OK before confirming."
+      isLastStep
+      title="Thank you!"
+      subtitle="Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com."
     >
         
     </FormWrapper>

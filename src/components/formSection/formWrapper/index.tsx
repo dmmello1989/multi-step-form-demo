@@ -5,15 +5,26 @@ type FormWrapperProps = {
   title: string,
   subtitle: string,
   isColumn?: boolean,
-  children: ReactNode
+  children: ReactNode,
+  isLastStep?: boolean
 }
 
-export const FormWrapper = ({ title, subtitle, isColumn, children }: FormWrapperProps) => {
+export const FormWrapper = ({ title, subtitle, isColumn, isLastStep, children }: FormWrapperProps) => {
   return (
-    <S.Container>
-      <S.Title>{title}</S.Title>
-      <S.Subtitle>{subtitle}</S.Subtitle>
-      <S.Children isColumn={isColumn}>{children}</S.Children>
+    <S.Container isLastStep={isLastStep}>
+      {!isLastStep ? (
+        <>
+          <S.Title>{title}</S.Title>
+          <S.Subtitle>{subtitle}</S.Subtitle>
+          <S.Children isColumn={isColumn}>{children}</S.Children>
+        </>
+      ) : (
+        <>
+          <S.Image />
+          <S.Title isLastStep>{title}</S.Title>
+          <S.Subtitle isLastStep>{subtitle}</S.Subtitle>
+        </>
+      )}
     </S.Container>
   )
 }
